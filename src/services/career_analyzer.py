@@ -234,7 +234,10 @@ class CareerAnalyzerSpark:
         # ==========================
         df = CareerAnalyzerSpark.compute_field_gpa(df)
         df = ReadinessClustering.cluster(df, model_path=model_path) # K-Means Unsupervised
-        important_subjects = RandomForestFeatureExtractor.extract_important_subjects(df) # Random Forest Supervised
+        
+        # Bỏ phần tính toán các môn học quan trọng (Random Forest) theo yêu cầu
+        important_subjects = [] 
+        # important_subjects = RandomForestFeatureExtractor.extract_important_subjects(df)
 
         # ==========================
         # GIAI ĐOẠN 2: MATCHING

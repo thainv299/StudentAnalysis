@@ -306,15 +306,6 @@ class CareerAnalysisTab:
             bar = "█" * int(pct / 2)
             self.txt_market.insert(tk.END, f"{role[:30]:<30}: {count:>4} jobs ({pct:>4.1f}%) {bar}\n")
 
-        if important_subjects:
-            self.txt_market.insert(tk.END, "\n" + "-"*60 + "\n")
-            self.txt_market.insert(tk.END, "🎯 CÁC MÔN HỌC QUAN TRỌNG NHẤT (FEATURE IMPORTANCE)\n")
-            self.txt_market.insert(tk.END, "-"*60 + "\n")
-            from scripts.createdata_toeic import SUBJECT_NAMES
-            for code, imp in important_subjects[:5]:
-                name = SUBJECT_NAMES.get(code, code)
-                self.txt_market.insert(tk.END, f"• {name} ({code}): {imp}%\n")
-        
         self.txt_market.tag_configure("header", font=("Segoe UI", 12, "bold"), foreground="#1e293b")
 
     def show_readiness_report(self, result_df):
