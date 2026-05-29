@@ -10,8 +10,8 @@ from tkinter import ttk
 # ══════════════════════════════════════════════════════════════════════════════
 CLUSTER_INFO = {
     2: {
-        "label":     "Yếu – Nguy Cơ Cao",
-        "risk":      "🚨  Rủi ro cao",
+        "label":     "Yếu",
+        "risk":      "🚨  Rủi ro học tập cao",
         "color_tag": "danger",
         "badge_bg":  "#ef4444",
         "badge_fg":  "#ffffff",
@@ -36,7 +36,7 @@ CLUSTER_INFO = {
         ],
     },
     0: {
-        "label":     "Trung Bình – Cần Cố Gắng",
+        "label":     "Trung bình",
         "risk":      "⚠️  Rủi ro trung bình",
         "color_tag": "warning",
         "badge_bg":  "#f59e0b",
@@ -61,7 +61,7 @@ CLUSTER_INFO = {
         ],
     },
     3: {
-        "label":     "Khá – Tiến Bộ Tốt",
+        "label":     "Khá",
         "risk":      "🔵  Rủi ro thấp",
         "color_tag": "good",
         "badge_bg":  "#3b82f6",
@@ -86,7 +86,7 @@ CLUSTER_INFO = {
         ],
     },
     1: {
-        "label":     "Xuất Sắc – Tiếp Tục Phát Huy",
+        "label":     "Xuất sắc",
         "risk":      "✅  Rủi ro thấp",
         "color_tag": "excellent",
         "badge_bg":  "#10b981",

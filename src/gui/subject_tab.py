@@ -249,7 +249,7 @@ class SubjectAnalysisTab:
         ).pack(anchor="w", pady=1)
         tk.Checkbutton(
             frame_opt, 
-            text="Chất lượng giảng dạy", 
+            text="Kết quả lớp học phần", 
             variable=self.ck_chatluong, 
             bg="#f1f5f9",
             fg="#1e293b",
@@ -359,7 +359,7 @@ class SubjectAnalysisTab:
         for color, label in [
             ("#fd7e7e", "Tiêu cực"),
             ("#fcd143", "Không ổn định"),
-            ("#c4b5fd", "Ổn định"),
+            ("#c4b5fd", "Khá"),
             ("#5eecb3", "Xuất sắc"),
         ]:
             row_f = tk.Frame(legend_f, bg="#e2e8f0")
@@ -629,13 +629,15 @@ class SubjectAnalysisTab:
         cl = str(result.get("ChatLuong") or "").strip()
         
         if "Tiêu cực" in cl:
-            return (0, "#ef4444", "#ffffff", "⚡", "Tiêu cực – Cần lưu ý")
+            return (0, "#ef4444", "#ffffff", "⚡", "Tiêu cực")
         if "Không ổn định" in cl:
             return (1, "#f59e0b", "#1c1917", "⚠️", "Không ổn định")
+        if "Khá" in cl:
+            return (2, "#8b5cf6", "#ffffff", "📈", "Khá")
         if "Xuất sắc" in cl:
-            return (3, "#10b981", "#ffffff", "✅", "Xuất sắc – Kết quả tốt")
+            return (3, "#10b981", "#ffffff", "✅", "Xuất sắc")
         
-        return (2, "#8b5cf6", "#ffffff", "📘", "Ổn định")
+        return (2, "#8b5cf6", "#ffffff", "📈", "Khá")
 
     def get_subject_color(self, ma_mh):
         p, bg, fg, icon, label = self._get_group_info(ma_mh)
@@ -761,7 +763,7 @@ class SubjectAnalysisTab:
         self._info_row(sec2, "Tỷ lệ rớt thực tế:", fp_eval, badge_bg)
 
         # ── 3. Chất lượng giảng dạy ─────────────────────────────────────────
-        self._sec_title_card(self._report_body, "📋  Chất Lượng Giảng Dạy")
+        self._sec_title_card(self._report_body, "📋  Kết quả lớp Học phần")
         sec3 = tk.Frame(self._report_body, bg="#e2e8f0", padx=14, pady=12)
         sec3.pack(fill="x", padx=16, pady=(0, 8))
         self._info_row(sec3, "Phân loại cụm:", group_label, badge_bg)

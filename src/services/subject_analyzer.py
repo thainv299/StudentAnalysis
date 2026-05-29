@@ -42,14 +42,8 @@ class SubjectAnalyzer:
         # 2. Chất lượng (KMeans Clustering)
         try:
             sdf = SubjectReadinessClustering.cluster(sdf, model_path=model_path)
-            sdf = sdf.withColumn(
-                "ChatLuong",
-                when(col("ChatLuongCluster").contains("Kém"), 
-                     "Không ổn định / Cần cải thiện")
-                .when(col("ChatLuongCluster").contains("Xuất sắc"),
-                      "Tốt & đồng đều")
-                .otherwise("Ổn định")
-            )
+            # Sử dụng trực tiếp nhãn từ phân cụm đã được định nghĩa chuẩn ở ML logic
+            sdf = sdf.withColumn("ChatLuong", col("ChatLuongCluster"))
             sdf = sdf.drop("ChatLuongCluster")
         except Exception as e:
             # Fallback về rule-based nếu clustering thất bại
@@ -57,17 +51,14 @@ class SubjectAnalyzer:
             if "SD" in sdf.columns and "A%" in sdf.columns and "A+%" in sdf.columns:
                 sdf = sdf.withColumn(
                     "ChatLuong",
-                    when((col("SD") > 1.0) & (col("F%") > 10),
-                         "Không ổn định / Cần cải thiện")
-                    .when((col("A%") + col("A+%") > 40) & (col("SD") < 0.7),
-                          "Tốt & đồng đều")
-                    .otherwise("Ổn định")
+                    when((col("SD") > 1.0) & (col("F%") > 10), "Tiêu cực")
+                    .when((col("A%") + col("A+%") > 40) & (col("SD") < 0.7), "Xuất sắc")
+                    .otherwise("Khá")
                 )
             else:
                 sdf = sdf.withColumn(
                     "ChatLuong",
-                    when(col("MaMH").isNotNull(),
-                         "Không đủ dữ liệu đánh giá")
+                    when(col("MaMH").isNotNull(), "Chưa xác định")
                 )
 
         # 3. Xu hướng (Rule-based)
@@ -121,7 +112,7 @@ class SubjectAnalyzer:
             # 2. Chất lượng
             if options.get("chatluong", True):
                 report_lines.append({
-                    "text": "2. Chất lượng giảng dạy:\n",
+                    "text": "2. Kết quả lớp học phần:\n",
                     "tag": "subheader"
                 })
                 msg = f"- Đánh giá: {row['ChatLuong']}\n"
@@ -177,17 +168,14 @@ class SubjectAnalyzer:
             if "SD" in sdf.columns and "A%" in sdf.columns and "A+%" in sdf.columns:
                 sdf = sdf.withColumn(
                     "ChatLuong",
-                    when((col("SD") > 1.0) & (col("F%") > 10),
-                        "Không ổn định / Cần cải thiện")
-                    .when((col("A%") + col("A+%") > 40) & (col("SD") < 0.7),
-                        "Tốt & đồng đều")
-                    .otherwise("Ổn định")
+                    when((col("SD") > 1.0) & (col("F%") > 10), "Tiêu cực")
+                    .when((col("A%") + col("A+%") > 40) & (col("SD") < 0.7), "Xuất sắc")
+                    .otherwise("Khá")
                 )
             else:
                 sdf = sdf.withColumn(
                     "ChatLuong",
-                    when(col("MaMH").isNotNull(),
-                        "Không đủ dữ liệu đánh giá")
+                    when(col("MaMH").isNotNull(), "Chưa xác định")
                 )
 
         # Xu hướng (Rule-based)

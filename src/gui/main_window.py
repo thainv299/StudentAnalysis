@@ -44,5 +44,5 @@ class MainWindow:
         
         #Tab 3: Dự đoán mức độ nguy hiểm của sinh viên
         self.tab_prediction = tk.Frame(self.notebook_main)
-        self.notebook_main.add(self.tab_prediction, text="Dự đoán học tập")
+        self.notebook_main.add(self.tab_prediction, text="Phân nhóm sinh viên")
         self.prediction_tab = StudentPredictionTab(self.tab_prediction)
