@@ -359,7 +359,7 @@ class SubjectAnalysisTab:
         for color, label in [
             ("#fd7e7e", "Tiêu cực"),
             ("#fcd143", "Không ổn định"),
-            ("#c4b5fd", "Ổn định"),
+            ("#c4b5fd", "Khá"),
             ("#5eecb3", "Xuất sắc"),
         ]:
             row_f = tk.Frame(legend_f, bg="#e2e8f0")
@@ -629,13 +629,15 @@ class SubjectAnalysisTab:
         cl = str(result.get("ChatLuong") or "").strip()
         
         if "Tiêu cực" in cl:
-            return (0, "#ef4444", "#ffffff", "⚡", "Tiêu cực – Cần lưu ý")
+            return (0, "#ef4444", "#ffffff", "⚡", "Tiêu cực")
         if "Không ổn định" in cl:
             return (1, "#f59e0b", "#1c1917", "⚠️", "Không ổn định")
+        if "Khá" in cl:
+            return (2, "#8b5cf6", "#ffffff", "📈", "Khá")
         if "Xuất sắc" in cl:
-            return (3, "#10b981", "#ffffff", "✅", "Xuất sắc – Kết quả tốt")
+            return (3, "#10b981", "#ffffff", "✅", "Xuất sắc")
         
-        return (2, "#8b5cf6", "#ffffff", "📘", "Ổn định")
+        return (2, "#8b5cf6", "#ffffff", "📈", "Khá")
 
     def get_subject_color(self, ma_mh):
         p, bg, fg, icon, label = self._get_group_info(ma_mh)

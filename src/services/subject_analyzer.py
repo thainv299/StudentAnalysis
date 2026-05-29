@@ -53,8 +53,7 @@ class SubjectAnalyzer:
                     "ChatLuong",
                     when((col("SD") > 1.0) & (col("F%") > 10), "Tiêu cực")
                     .when((col("A%") + col("A+%") > 40) & (col("SD") < 0.7), "Xuất sắc")
-                    .when(col("TB") >= 7.0, "Khá")
-                    .otherwise("Trung bình")
+                    .otherwise("Khá")
                 )
             else:
                 sdf = sdf.withColumn(
@@ -171,8 +170,7 @@ class SubjectAnalyzer:
                     "ChatLuong",
                     when((col("SD") > 1.0) & (col("F%") > 10), "Tiêu cực")
                     .when((col("A%") + col("A+%") > 40) & (col("SD") < 0.7), "Xuất sắc")
-                    .when(col("TB") >= 7.0, "Khá")
-                    .otherwise("Trung bình")
+                    .otherwise("Khá")
                 )
             else:
                 sdf = sdf.withColumn(

@@ -75,11 +75,11 @@ class SubjectReadinessClustering:
         cluster_quality = [(i, float(c[0])) for i, c in enumerate(centers)]
         cluster_quality.sort(key=lambda x: x[1], reverse=True)
         
-        # Map rank → label
+        # Map rank → label (K=4)
         label_by_rank = [
             "Xuất sắc",       # rank 0
             "Khá",            # rank 1
-            "Trung bình",     # rank 2
+            "Không ổn định",   # rank 2
             "Tiêu cực"        # rank 3
         ]
         
@@ -96,10 +96,10 @@ class SubjectReadinessClustering:
 class SubjectQualityPriority:
     """Map label → priority cho UI"""
     PRIORITY_MAP = {
-        "Tiêu cực - Kém": 0,
-        "Không ổn định": 2,
-        "Ổn định": 1,
-        "Xuất sắc - Tốt": 3,
+        "Tiêu cực": 0,
+        "Không ổn định": 1,
+        "Khá": 2,
+        "Xuất sắc": 3,
     }
     
     @staticmethod
