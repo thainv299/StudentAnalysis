@@ -21,6 +21,22 @@ Dự đoán mức độ rủi ro học vụ của sinh viên để có biện ph
 ### 3. Đánh giá tính Sẵn sàng Nghề nghiệp (Career Readiness)
 Đánh giá mức độ sẵn sàng tham gia thị trường lao động của sinh viên dựa trên năng lực chuyên môn (GPA tổng) và ngoại ngữ (TOEIC).
 
+## 📸 Hình ảnh Demo & Đánh giá Mô hình
+
+### Giao diện Hệ thống
+![Demo Chức năng 1](assets/democn1.png)
+*Giao diện phân tích và hiển thị kết quả.*
+
+![Demo Chức năng 2](assets/democn2.png)
+*Chi tiết phân loại nhóm.*
+
+### Đánh giá Mô hình (Silhouette & WCSS)
+![Biểu đồ Silhouette và WCSS 1](assets/sodo1.png)
+*Biểu đồ đánh giá số lượng cụm tối ưu (K).*
+
+![Biểu đồ Silhouette và WCSS 2](assets/sodo2.png)
+*Kết quả đánh giá chất lượng phân cụm.*
+
 ## 📂 Cấu trúc thư mục
 
 ```text
